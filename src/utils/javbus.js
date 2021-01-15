@@ -17,9 +17,6 @@ export async function reqJavbus(code) {
     let gid = responseText.match(new RegExp(/gid.=.(\d*)/))[1]
     let img = responseText.match(new RegExp(/img.=.\'(.*)\'/))[1]
 
-    // let magnetList = []
-    // let nameList = []
-
     const ajax_url = `https://www.javbus.com/ajax/uncledatoolsbyajax.php?gid=${gid}&lang=zh&img=${img}&uc=0`
 
     let ajaxResponseText = await fetch(ajax_url, ajax_req).then((res) => res.text())

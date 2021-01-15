@@ -1,6 +1,6 @@
 import Telegram from '../utils/telegram'
 import { BOT_TOKEN,ERRLOG_CHANNEL,ROBOT_NAME } from '../config'
-import { reqJavbus2 } from '../utils/javbus'
+import { reqJavbus } from '../utils/javbus'
 
 export default async request => {
   try {
@@ -50,7 +50,7 @@ export default async request => {
       let max = isPrivate ? 10 : 3;
 
       try {
-        let {title,img,resultList} = await reqJavbus2(code)
+        let {title,img,resultList} = await reqJavbus(code)
 
         let media = {
           caption: title,
