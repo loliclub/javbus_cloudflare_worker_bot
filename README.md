@@ -4,7 +4,7 @@
 
 项目实例 [@javbus_bot](https://t.me/javbus_bot) , 因为 Free Plan 一天只有 10w 请求，所以强烈建议你部署自己的机器人。
 
-## 部署你自己的 Cloudflare Worker
+## 部署你自己的 bot
 
 ### 注册 Telegram bot
 
@@ -14,14 +14,13 @@
 
 假设宁已经注册了 [Cloudflare](https://cloudflare.com) 账号，并且拥有一个域名（自行注册或者 Cloudflare 分配的 workers.dev 子域名）。
 
-1. Clone 本项目到本地
-2. 申请 Cloudflare API TOKEN 用于登录 wrangler。 登录 Cloudflare, 在 [Cloudflare 面板](https://dash.cloudflare.com/profile/api-tokens)，点击 "Create Token", 申请一个 API TOKEN ,直接使用 "Edit Cloudflare Workers"，
+1. fork 本项目
+2. 申请一个 Cloudflare API TOKEN 用于授权 wrangler（你不需要这是什么，我只是说说）。 登录 Cloudflare, 在 [Cloudflare 面板](https://dash.cloudflare.com/profile/api-tokens)，点击 "Create Token", 申请一个 API TOKEN ,直接使用 "Edit Cloudflare Workers"，
  这个模版即可. 
-3. 本地计算机安装 wrangler，安装教程见 https://developers.cloudflare.com/workers/#installing-the-workers-cli
-4. 打开一个终端，运行 `wrangler config` , 按照提示输入第2步骤获得 API TOKEN。
-5. 修改本项目根目录下 `wrangler.toml` 文件中 `name` 和 `account_id`。前者是子域名的名字，后者是宁的 Cloudflare 账号id，可以在 [worker 面板](https://dash.cloudflare.com/?to=/:account/workers/overview) 的右方查看到。请放心，`account_id` 不会泄漏你的账号
-6. 修改本项目 `src/config.js` 配置文件，注意第二行 `BOT_TOKEN`, 在引号中粘贴 botfather 给你的 token.
-7. 在终端中输入 `wrangler publish --release`,即可部署代码到 Cloudflare Worker
+3. 在 github 的网页上，仓库设置中，配置一个 Secret，名字是 `CF_API_TOKEN`，值为上一步骤的 API TOKEN 值
+4. 修改本项目根目录下 `wrangler.toml` 部署配置文件，文件中 `name` 和 `account_id`。前者是 worker 的名字，即下文的 `<worker-name>`，后者是宁的 Cloudflare 账号id，可以在 [worker 面板](https://dash.cloudflare.com/?to=/:account/workers/overview) 的右方查看到。请放心，`account_id` 不会泄漏你的账号。
+5. 修改本项目 `src/config.js` 配置文件，注意第二行 `BOT_TOKEN`, 在引号中粘贴 botfather 给你的 token.
+6. 上述修改你可以在网页上修改，修改完成后，github workflow 会自动执行编译，并部署代码到 cloudflare worker 上。
 
 ### 配置 Telegram bot 的 Webhook
 
