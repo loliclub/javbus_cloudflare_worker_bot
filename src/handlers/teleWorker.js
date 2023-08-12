@@ -52,6 +52,10 @@ export default async request => {
       try {
         let {title,img,resultList} = await reqJavbus(code)
 
+        if  (!img.startsWith('https://www.javbus.com')){
+          img = 'https://www.javbus.com'+img
+        }
+
         let media = {
           caption: title,
           url: img
