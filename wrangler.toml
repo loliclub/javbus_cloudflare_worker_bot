@@ -1,4 +1,3 @@
 workers_dev = true
 name = "teleworker"
 type = "webpack"
-account_id = ""
