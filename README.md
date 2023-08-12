@@ -16,13 +16,14 @@
 
 1. fork 本项目
 2. 申请一个 Cloudflare API TOKEN 用于授权 wrangler（部署 Cloudflare worker 的 js 工具）。 登录 Cloudflare, 在 [Cloudflare 面板](https://dash.cloudflare.com/profile/api-tokens)，点击 "Create Token", 申请一个 API TOKEN ,直接使用 "Edit Cloudflare Workers" 这个模版。 Account Resources ，Zone Resources 选择当前账号的资源即可。注意，TOKEN 出现后，请将其复制到你电脑上的地方，因为 TOKEN 只会出现一次。如果忘记复制了，可以删除后再次申请。
-3. 在 github 的网页上，仓库设置的 Secrets 配置页面（Settings - Security - Secrets and variables - Actions），配置 3 个 Secret。
-   3.1 `CF_API_TOKEN`，值为步骤 2 的 API TOKEN 值
-   3.2 `BOT_TOKEN`，这个是找 [@botfather](https://t.me/botfather) 申请机器人的时候获得
-   3.3 `CF_ACCOUNT_ID`，打开 [worker 面板](https://dash.cloudflare.com/?to=/:account/workers/overview)，在右边可以看到你的 `account_id`
-4. 修改本项目根目录下 `wrangler.toml` 部署配置文件中的 `name`。这是 worker 的名字，即下文的 `<worker-name>`，注意不要带下划线，否则注册到 tgbot webhook 会出现 `"last_error_message":"SSL error {error:0A000086:SSL routines::certificate verify failed}"`，具体原因未知。
-5. 修改本项目 `src/config.js` 配置文件，`ROBOT_NAME` 改成你的 bot 用户名。
-6. 上述修改你可以在网页上修改，修改完成后，github workflow 会自动执行编译，并部署代码到 cloudflare worker 上。
+3. 在 github 的网页上，仓库设置的 Secrets 配置页面（Settings - Security - Secrets and variables - Actions），配置 3 个 Secret:  
+   3.1 `CF_API_TOKEN`，值为步骤 2 的 API TOKEN 值  
+   3.2 `BOT_TOKEN`，这个是找 [@botfather](https://t.me/botfather) 申请机器人的时候获得  
+   3.3 `CF_ACCOUNT_ID`，打开 [worker 面板](https://dash.cloudflare.com/?to=/:account/workers/overview)，在右边可以看到你的 `account_id`  
+4. 在你 fork 的项目页面上，打开 "Actions" 标签，首次打开需要点一下 "I understand ....." 开启此功能。
+5. 修改本项目根目录下 `wrangler.toml` 部署配置文件中的 `name`。这是 worker 的名字，即下文的 `<worker-name>`，注意不要带下划线，否则注册到 tgbot webhook 会出现 `"last_error_message":"SSL error {error:0A000086:SSL routines::certificate verify failed}"`，具体原因未知。
+6. (可选)修改本项目 `src/config.js` 配置文件，`ROBOT_NAME` 改成你的 bot 用户名。
+7. 上述修改你可以在网页上修改，修改完成后，github workflow 会自动执行编译，并部署代码到 cloudflare worker 上。
 
 ### 配置 Telegram bot 的 Webhook
 

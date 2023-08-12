@@ -1,5 +1,5 @@
 import Telegram from '../utils/telegram'
-import { BOT_TOKEN,ERRLOG_CHANNEL,ROBOT_NAME } from '../config'
+import { ROBOT_NAME } from '../config'
 import { reqJavbus } from '../utils/javbus'
 
 export default async request => {
